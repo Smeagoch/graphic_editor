@@ -26,10 +26,22 @@ target_link_libraries(example PRIVATE figure)
 target_link_libraries(example PRIVATE graphic_editor)
 
 if (MSVC)
+    target_compile_options(figure PRIVATE
+        /W4
+    )
+    target_compile_options(graphic_editor PRIVATE
+        /W4
+    )
     target_compile_options(example PRIVATE
         /W4
     )
 else ()
+    target_compile_options(figure PRIVATE
+        -Wall -pedantic -Werror
+    )
+    target_compile_options(graphic_editor PRIVATE
+        -Wall -pedantic -Werror
+    )
     target_compile_options(example PRIVATE
         -Wall -pedantic -Werror
     )
